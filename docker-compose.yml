@@ -1,0 +1,21 @@
+services:
+
+  mongo:
+    image: mongo:8.0.3
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: example
+    ports:
+      - 27017:27017
+    volumes:
+      - /media/renderws/carltonData/cj2024/code/deno/deno-fresh-auth-ex1/mongodb-data:/data/db
+
+  mongo-express:
+    image: mongo-express:1.0.2
+    depends_on:
+      - mongo
+    ports:
+      - 8081:8081
+    environment:
+      ME_CONFIG_BASICAUTH_ENABLED: "false"
+      ME_CONFIG_MONGODB_URL: "mongodb://root:example@mongo:27017"
