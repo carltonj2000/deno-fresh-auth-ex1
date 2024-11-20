@@ -5,7 +5,7 @@ import config from "./fresh.config.ts";
 
 import "$std/dotenv/load.ts";
 
-import { createMongoDBConnection } from "./utils/DBConnection.ts";
-await createMongoDBConnection();
+import "./utils/DBConnection.ts";
+// await createMongoDBConnection();
 
 await dev(import.meta.url, "./main.ts", config);

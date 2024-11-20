@@ -12,7 +12,8 @@ export default function RegisterPage() {
         try {
             const resp = await axoid.post("/api/auth/register", userData);
             if (resp.status === 201) {
-                window.location.href = "/login";
+                alert("Registered Successfully!");
+                globalThis.location.href = "/login";
             }
         } catch (e) {
             console.error(e);

@@ -12,10 +12,13 @@ export default function LoginPage() {
             const resp = await axoid.post("/api/auth/login", userData);
             if (resp.status === 200) {
                 localStorage.setItem("token", JSON.stringify(resp.data.token));
-                window.location.href = "/";
+                globalThis.location.href = "/";
+            } else {
+                alert(resp.data.error);
             }
         } catch (e) {
             console.error(e);
+            alert(e.response.data.error);
         }
     };
     return (
@@ -63,6 +66,9 @@ export default function LoginPage() {
             <button className="btn btn-success" onClick={submitHandler}>
                 Login
             </button>
+            <a href="/register" class="text-blue-400 underline">
+                Register a new user!
+            </a>
         </div>
     );
 }
